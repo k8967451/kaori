@@ -8,7 +8,11 @@ discord.on('ready', () => {
 })
 
 discord.on('message', msg => {
-  music(msg)
+  try {
+    music(msg)
+  } catch (error) {
+    console.warn(error)
+  }
 })
 
-discord.login(process.env.discordToken)
+discord.login(process.env.TOKEN)
