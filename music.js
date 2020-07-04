@@ -3,21 +3,21 @@ const ytdl = require('ytdl-core')
 const data = {}
 
 const play = async (msg, embed) => {
-  const id = data[msg.channel.id].queue.shift()
+  const id = data[msg.guild.id].queue.shift()
   const info = await ytdl.getInfo(id)
   embed
     .setTitle(info.title)
     .setURL(info.video_url)
     .setImage(`https://img.youtube.com/vi/${info.video_id}/maxresdefault.jpg`)
   msg.channel.send({ embed })
-  data[msg.channel.id].conn
+  data[msg.guild.id].conn
     .play(ytdl(id), { bitrate: 'auto' })
     .on('finish', () => {
-      if (data[msg.channel.id].queue.length) {
+      if (data[msg.guild.id].queue.length) {
         play(msg, embed)
       } else {
-        data[msg.channel.id].conn.disconnect()
-        data[msg.channel.id] = null
+        data[msg.guild.id].conn.disconnect()
+        data[msg.guild.id] = null
       }
     })
     .on('error', err => console.error(err))
@@ -33,16 +33,16 @@ const index = async msg => {
     if (msg.member.voice.channel) {
       const url = msg.content.match(/(http(s)?:\/\/)?(www.)?youtu(be|.be)?(\.com)?\/.+/gi)
       if (url) {
-        if (!data[msg.channel.id]) {
+        if (!data[msg.guild.id]) {
           await msg.member.voice.channel.join().then(conn => {
-            data[msg.channel.id] = {
+            data[msg.guild.id] = {
               conn,
               queue: []
             }
           })
         }
-        data[msg.channel.id].queue.push(ytdl.getVideoID(url[0]))
-        if (!data[msg.channel.id].conn.dispatcher) {
+        data[msg.guild.id].queue.push(ytdl.getVideoID(url[0]))
+        if (!data[msg.guild.id].conn.dispatcher) {
           play(msg, embed)
         }
       } else {
