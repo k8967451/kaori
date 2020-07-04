@@ -2,7 +2,7 @@ const ytdl = require('ytdl-core')
 
 const index = async msg => {
   const embed = {
-    color: process.env.COLOR || '#f7cac9',
+    color: process.env.color || '#f7cac9',
     timestamp: new Date(),
     footer: {
       text: msg.author.username,
