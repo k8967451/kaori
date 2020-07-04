@@ -9,6 +9,8 @@ discord.on('ready', () => {
 
 discord.on('message', msg => {
   try {
+    if (msg.author.bot) return
+
     music(msg)
   } catch (error) {
     console.warn(error)
