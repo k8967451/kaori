@@ -36,10 +36,14 @@ const index = async msg => {
         if (!data[msg.guild.id]) {
           await msg.member.voice.channel.join().then(conn => {
             data[msg.guild.id] = {
+              voiceChannel: msg.member.voice.channel,
               conn,
               queue: []
             }
           })
+        } else if (msg.member.voice.channel != data[msg.guild.id].voiceChannel) {
+          embed.setDescription('음악을 추가하려면 동일한 음성 채널에 있어야 해!')
+          msg.channel.send({ embed })
         }
         data[msg.guild.id].queue.push(ytdl.getVideoID(url[0]))
         if (!data[msg.guild.id].conn.dispatcher) {
