@@ -1,5 +1,5 @@
-const Discord = require('discord.js')
-const ytdl = require('ytdl-core')
+import discord from 'discord.js'
+import ytdl from 'ytdl-core'
 const data = {}
 
 const play = async (msg, embed) => {
@@ -24,7 +24,7 @@ const play = async (msg, embed) => {
 }
 
 const index = async msg => {
-  const embed = new Discord.MessageEmbed()
+  const embed = new discord.MessageEmbed()
     .setColor(process.env.color || '#f7cac9')
     .setTimestamp()
     .setFooter(msg.author.username, msg.author.avatarURL())
@@ -44,11 +44,11 @@ const index = async msg => {
           for (const key in url) {
             const id = ytdl.getVideoID(url[key])
             data[msg.guild.id].queue.push(id)
-            if (key == 0) {
+            if (key === '0') {
               play(msg, embed)
             } else {
               const info = await ytdl.getInfo(id)
-              const embed = new Discord.MessageEmbed()
+              const embed = new discord.MessageEmbed()
                 .setColor(process.env.color || '#f7cac9')
                 .setTimestamp()
                 .setFooter(msg.author.username, msg.author.avatarURL())
@@ -145,4 +145,4 @@ const index = async msg => {
   }
 }
 
-module.exports = index
+export default index

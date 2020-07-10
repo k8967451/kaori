@@ -2,10 +2,10 @@
   "name": "kaori",
   "version": "1.0.0",
   "scripts": {
-    "serve": "node -r dotenv/config index",
-    "dev": "nodemon -r dotenv/config index.js dotenv_config_path=.env.dev"
+    "start": "ts-node -r dotenv/config index",
+    "dev": "ts-node-dev -r dotenv/config index dotenv_config_path=.env.dev"
   },
-  "main": "index.js",
+  "main": "index.ts",
   "repository": "https://github.com/momenthana/kaori.git",
   "author": "Hana <momenthana@kakao.com>",
   "license": "MIT",
@@ -14,9 +14,11 @@
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
     "ffmpeg-static": "^4.2.5",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.6",
     "ytdl-core": "^2.1.7"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "ts-node-dev": "^1.0.0-pre.51"
   }
 }
