@@ -10,4 +10,4 @@ RUN npm i --production
 
 COPY . .
 
-CMD [ "node", "index.js" ]
+CMD [ "npm", "start" ]
