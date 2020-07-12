@@ -2,10 +2,10 @@
   "name": "kaori",
   "version": "1.0.0",
   "scripts": {
-    "start": "ts-node -r dotenv/config index",
-    "dev": "ts-node-dev -r dotenv/config index dotenv_config_path=.env.dev"
+    "start": "ts-node -r dotenv/config src/index",
+    "dev": "ts-node-dev -r dotenv/config src/index dotenv_config_path=.env.dev"
   },
-  "main": "index.ts",
+  "main": "src/index.ts",
   "repository": "https://github.com/momenthana/kaori.git",
   "author": "Hana <momenthana@kakao.com>",
   "license": "MIT",
