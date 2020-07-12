@@ -10,7 +10,7 @@ const play = async (msg, embed) => {
     .setURL(info.video_url)
     .setImage(`https://img.youtube.com/vi/${info.video_id}/maxresdefault.jpg`)
   msg.channel.send({ embed })
-  data[msg.guild.id].conn
+  const dispatcher = data[msg.guild.id].conn
     .play(ytdl(id), { bitrate: 'auto' })
     .on('finish', () => {
       if (data[msg.guild.id].queue.length) {
@@ -21,6 +21,7 @@ const play = async (msg, embed) => {
       }
     })
     .on('error', err => console.error(err))
+  dispatcher.setVolume(0.5)
 }
 
 const index = async msg => {
