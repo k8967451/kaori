@@ -1,5 +1,23 @@
 import discord from 'discord.js'
 import music from './music'
+import fs from 'fs'
+
+const load = () => {
+  try {
+    return JSON.parse(fs.readFileSync(`./data/servers.json`).toString())
+  } catch {
+    return {}
+  }
+}
+
+const save = (info) => {
+  try {
+    fs.writeFileSync(`./data/servers.json`, JSON.stringify(info))
+  } catch {
+    fs.mkdirSync('./data')
+    fs.writeFileSync(`./data/servers.json`, JSON.stringify(info))
+  }
+}
 
 const client = new discord.Client()
 
@@ -11,12 +29,15 @@ client.on('message', async msg => {
   try {
     if (msg.author.bot) return
 
-    if (!msg.content.startsWith(process.env.prefix) && msg.content.search(new RegExp(RegExp(process.env.name, 'i'))) == -1) return
-
     const embed = new discord.MessageEmbed()
       .setColor('#f7cac9')
       .setTimestamp()
       .setFooter(msg.author.username, msg.author.avatarURL());
+
+    let data = load()[msg.channel.id]
+    !data ? data = {} : null
+    const prefix = data ? data.prefix ? data.prefix : process.env.prefix : process.env.prefix
+    if (!msg.content.startsWith(prefix) && msg.content.search(new RegExp(RegExp(process.env.name, 'i'))) == -1) return
 
     if (msg.content.match(/(핑|ping)/i)) {
       embed.setTitle(msg.content.includes('핑') ? '퐁!' : 'Pong!')
@@ -30,6 +51,13 @@ client.on('message', async msg => {
     } else if (msg.content.match(/(도움|도와|help)/i)) {
       embed.setTitle(msg.content.match(/help/i) ? 'Help!' : '도움말!')
         .addField('내가 필요하면 \'Kaori\'라고 불러줘', '음악을 재생하려면 \'!play YoutubeURL\'처럼 부탁해줘!\n스킵하려면 \'!skip\' 대기열은 \'!queue\'로 확인할 수 있어!\n자세한건 https://github.com/momenthana/kaori 여기서 참고하고')
+      msg.channel.send({ embed })
+    } else if (msg.content.match(/prefix/i)) {
+      !data[msg.channel.id] ? data[msg.channel.id] = {} : null
+      data[msg.channel.id].prefix = msg.content.replace(new RegExp(`(kaori|prefix|${prefix}| )`, 'gi'), '')
+      save(data)
+      embed.setTitle('Prefix')
+        .setDescription(data[msg.channel.id].prefix ? `${data[msg.channel.id].prefix}로 접두사를 변경했어!` : '접두사를 제거했어! 이제 Kaori라고만 부를 수 있어')
       msg.channel.send({ embed })
     } else {
       music(msg)
