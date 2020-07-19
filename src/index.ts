@@ -1,5 +1,6 @@
 import discord from 'discord.js'
 import music from './music'
+import Embed from './embed'
 import fs from 'fs'
 
 const load = () => {
@@ -29,10 +30,7 @@ client.on('message', async msg => {
   try {
     if (msg.author.bot) return
 
-    const embed = new discord.MessageEmbed()
-      .setColor('#f7cac9')
-      .setTimestamp()
-      .setFooter(msg.author.username, msg.author.avatarURL());
+    const embed = Embed(msg)
 
     let data = load()[msg.channel.id]
     !data ? data = {} : null
