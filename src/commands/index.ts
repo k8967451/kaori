@@ -1,9 +1,11 @@
 import play from './play'
-import skip from './skip'
 import queue from './queue'
+import skip from './skip'
+import volume from './volume'
 
 export {
   play,
+  queue,
   skip,
-  queue
+  volume
 }
