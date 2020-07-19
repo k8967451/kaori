@@ -1,5 +1,5 @@
 import discord from 'discord.js'
-import { play, queue, skip, volume } from './commands'
+import { leave, play, queue, skip, volume } from './commands'
 const data = {}
 
 const index = async msg => {
@@ -12,20 +12,7 @@ const index = async msg => {
   skip(msg, embed, data)
   queue(msg, embed, data)
   volume(msg, embed, data)
-
-  if (msg.content.match(/leave/i)) {
-    console.log(1)
-    if (data[msg.guild.id]) {
-      data[msg.guild.id].voiceChannel.leave()
-      data[msg.guild.id] = null
-      embed.setTitle('Leave')
-      embed.setDescription('음성 채널을 나왔어!')
-      msg.channel.send({ embed })
-    } else {
-      embed.setDescription('음악이 재생중이지 않아!')
-      msg.channel.send({ embed })
-    }
-  }
+  leave(msg, embed, data)
 
   if (msg.content.match(/(remove|delete|del)/i)) {
     if (data[msg.guild.id]) {
