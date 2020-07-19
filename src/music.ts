@@ -1,12 +1,10 @@
 import discord from 'discord.js'
+import Embed from './embed'
 import { leave, play, queue, remove, skip, volume } from './commands'
 const data = {}
 
 const index = async msg => {
-  const embed = new discord.MessageEmbed()
-    .setColor(process.env.color || '#f7cac9')
-    .setTimestamp()
-    .setFooter(msg.author.username, msg.author.avatarURL())
+  const embed = Embed(msg)
 
   leave(msg, embed, data)
   play(msg, embed, data)
