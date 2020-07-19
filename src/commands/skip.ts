@@ -1,4 +1,3 @@
-
 const skip = (msg, embed, data) => {
   if (msg.content.includes('skip')) {
     if (data[msg.guild.id]) {
