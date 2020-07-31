@@ -3,11 +3,11 @@ const leave = (msg, embed, data) => {
     data[msg.guild.id].voiceChannel.leave()
     data[msg.guild.id] = null
     embed.setTitle('Leave')
-    embed.setDescription('음성 채널을 나왔어!')
-    msg.channel.send({ embed })
+      .setDescription('음성 채널을 나왔어!')
+    msg.channel.send(embed)
   } else {
     embed.setDescription('음악이 재생중이지 않아!')
-    msg.channel.send({ embed })
+    msg.channel.send(embed)
   }
 }
 

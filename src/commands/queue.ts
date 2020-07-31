@@ -8,14 +8,14 @@ const queue = async (msg, embed, data) => {
         const info = await ytdl.getInfo(data[msg.guild.id].queue[key])
         embed.addField(Number(key) + 1, info.title)
       }
-      msg.channel.send({ embed })
+      msg.channel.send(embed)
     } else {
       embed.setDescription('음악 대기열이 없어!')
-      msg.channel.send({ embed })
+      msg.channel.send(embed)
     }
   } else {
     embed.setDescription('음악이 재생중이지 않아!')
-    msg.channel.send({ embed })
+    msg.channel.send(embed)
   }
 }
 
