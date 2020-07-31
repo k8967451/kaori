@@ -1,9 +1,10 @@
-import { leave, play, queue, remove, skip, volume } from './commands'
+import { help, leave, play, queue, remove, skip, volume } from './commands'
 import { embed } from './utils'
 
 const data = {}
 
 const commands = {
+  'help': help,
   'leave': leave,
   'play': play,
   'queue': queue,
