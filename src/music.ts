@@ -1,5 +1,5 @@
-import embed from './embed'
 import { leave, play, queue, remove, skip, volume } from './commands'
+import { embed } from './utils'
 
 const data = {}
 
