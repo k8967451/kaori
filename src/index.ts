@@ -1,16 +1,6 @@
 import discord from 'discord.js'
-import fs from 'fs'
 import music from './music'
-import { embed, load } from './utils'
-
-const save = (info) => {
-  try {
-    fs.writeFileSync(`./data/servers.json`, JSON.stringify(info))
-  } catch {
-    fs.mkdirSync('./data')
-    fs.writeFileSync(`./data/servers.json`, JSON.stringify(info))
-  }
-}
+import { embed, load, save } from './utils'
 
 const client = new discord.Client()
 
