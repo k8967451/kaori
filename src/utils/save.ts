@@ -1,12 +1,13 @@
 import fs from 'fs'
+import path from 'path'
 
-const save = (info) => {
+const save = (filePath: string, data: object) => {
   try {
-    fs.writeFileSync(`./data/servers.json`, JSON.stringify(info))
+    fs.writeFileSync(filePath, JSON.stringify(data))
   } catch (err) {
     if (err.code === 'ENOENT') {
-      fs.mkdirSync('./data')
-      fs.writeFileSync(`./data/servers.json`, JSON.stringify(info))
+      fs.mkdirSync(path.dirname(filePath))
+      fs.writeFileSync(filePath, JSON.stringify(data))
     }
   }
 }

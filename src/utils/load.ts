@@ -1,8 +1,8 @@
 import fs from 'fs'
 
-const load = () => {
+const load = (filePath: string) => {
   try {
-    return JSON.parse(fs.readFileSync(`./data/servers.json`).toString())
+    return JSON.parse(fs.readFileSync(filePath).toString())
   } catch (err) {
     if (err.code === 'ENOENT') {
       return {}
