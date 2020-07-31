@@ -1,15 +1,7 @@
 import discord from 'discord.js'
 import fs from 'fs'
 import music from './music'
-import { embed } from './utils'
-
-const load = () => {
-  try {
-    return JSON.parse(fs.readFileSync(`./data/servers.json`).toString())
-  } catch {
-    return {}
-  }
-}
+import { embed, load } from './utils'
 
 const save = (info) => {
   try {
