@@ -14,9 +14,8 @@ client.on('message', async msg => {
 
     const Embed = embed(msg)
 
-    let data = load('data/servers.json')[msg.channel.id]
-    !data ? data = {} : null
-    const prefix = data ? data.prefix ? data.prefix : process.env.prefix : process.env.prefix
+    let data = load('data/servers.json')
+    const prefix = data[msg.channel.id] ? data[msg.channel.id].prefix ? data[msg.channel.id].prefix : process.env.prefix : process.env.prefix
     if (!msg.content.startsWith(prefix) && msg.content.search(new RegExp(RegExp(process.env.name, 'i'))) == -1) return
 
     if (msg.content.match(/(핑|ping)/i)) {
