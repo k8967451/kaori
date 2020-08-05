@@ -42,4 +42,8 @@ client.on('message', async msg => {
   }
 })
 
+setInterval(async () => {
+  await client.user.setActivity('서버 ' + client.guilds.cache.size + '개에서 사용')
+}, 10000)
+
 client.login(process.env.token)
