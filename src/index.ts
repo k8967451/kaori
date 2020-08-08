@@ -36,8 +36,11 @@ client.on('message', async msg => {
   }
 })
 
+const messages = load('src/messages.json')
+const length = messages.activity.length
 setInterval(async () => {
-  await client.user.setActivity('서버 ' + client.guilds.cache.size + '개에서 사용')
+  messages.activity[length] = '서버 ' + client.guilds.cache.size + '개에서 사용'
+  await client.user.setActivity(messages.activity[Math.floor(Math.random() * messages.activity.length)])
 }, 10000)
 
 client.login(process.env.token)
