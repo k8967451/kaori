@@ -16,8 +16,8 @@ client.on('message', async msg => {
 
     const data = load('data/servers.json')
 
-    const prefix = data[msg.channel.id] ? data[msg.channel.id].prefix ? data[msg.channel.id].prefix : process.env.prefix : process.env.prefix
-    if (!msg.content.startsWith(prefix) && msg.content.search(new RegExp(RegExp(process.env.name, 'i'))) == -1) return
+    const getPrefix = data[msg.channel.id] ? data[msg.channel.id].prefix ? data[msg.channel.id].prefix : null : null
+    if (!msg.content.startsWith(getPrefix) && msg.content.search(RegExp(process.env.name, 'i')) == -1) return
 
     if (msg.content.match(/(핑|ping)/i)) {
       Embed.setTitle(msg.content.includes('핑') ? '퐁!' : 'Pong!')
