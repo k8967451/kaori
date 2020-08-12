@@ -1,6 +1,12 @@
 const ytsr = require('ytsr')
 
 const search = (msg, embed, data) => {
+  if (!msg.content.replace(/kaori|search| /gi, '')) {
+    embed.setDescription('검색 키워드를 입력해줘!')
+    msg.channel.send(embed)
+    return
+  }
+
   ytsr.getFilters(msg.content.replace(/kaori|search/gi, ''), (err, filters) => {
     if (err) throw err
     let filter = filters.get('Type').find(o => o.name === 'Video')
