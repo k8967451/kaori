@@ -9,12 +9,11 @@ const search = (msg, embed, data) => {
       nextpageRef: filter.ref,
     }, (err, res) => {
       if (err) throw err
-      console.log(res)
       embed.setTitle('Search!')
         .setDescription(res.query + '에 대한 검색 결과')
       for (const key in res.items) {
         const element = res.items[key]
-        embed.addField(`${Number(key) + 1}. ${element.title}`, element.duration)
+        embed.addField(`${Number(key) + 1}. ${element.title}`, element.live ? 'Live' : element.duration)
       }
       msg.channel.send(embed)
     })
