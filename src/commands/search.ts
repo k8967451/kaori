@@ -12,9 +12,10 @@ const search = (msg, embed, data) => {
       console.log(res)
       embed.setTitle('Search!')
         .setDescription(res.query + '에 대한 검색 결과')
-      res.items.forEach(element => {
-        embed.addField(element.title, element.duration)
-      })
+      for (const key in res.items) {
+        const element = res.items[key]
+        embed.addField(`${Number(key) + 1}. ${element.title}`, element.duration)
+      }
       msg.channel.send(embed)
     })
   })
