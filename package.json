@@ -16,7 +16,8 @@
     "ffmpeg-static": "^4.2.6",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.7",
-    "ytdl-core": "^3.2.0"
+    "ytdl-core": "^3.2.0",
+    "ytsr": "^0.1.21"
   },
   "devDependencies": {
     "ts-node-dev": "^1.0.0-pre.56"
