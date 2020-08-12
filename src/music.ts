@@ -1,4 +1,4 @@
-import { help, leave, ping, play, prefix, queue, remove, skip, volume } from './commands'
+import { help, leave, ping, play, prefix, queue, remove, search, skip, volume } from './commands'
 import { embed, load, save } from './utils'
 
 const data = load('data/servers.json')
@@ -11,6 +11,7 @@ const commands = {
   'prefix': prefix,
   'queue': queue,
   'remove': remove,
+  'search': search,
   'skip': skip,
   'volume': volume
 }

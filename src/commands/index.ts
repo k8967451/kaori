@@ -5,6 +5,7 @@ import play from './play'
 import prefix from './prefix'
 import queue from './queue'
 import remove from './remove'
+import search from './search'
 import skip from './skip'
 import volume from './volume'
 
@@ -16,6 +17,7 @@ export {
   prefix,
   queue,
   remove,
+  search,
   skip,
   volume
 }
