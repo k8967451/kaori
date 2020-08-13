@@ -1,6 +1,15 @@
 const help = (msg, embed) => {
-  embed.setTitle('Kaori')
-    .addField('내가 필요하면 \'Kaori\'라고 불러줘', '음악을 재생하려면 \'!play YoutubeURL\'처럼 부탁해줘!\n스킵하려면 \'!skip\' 대기열은 \'!queue\'로 확인할 수 있어!\n봇과 관련한 질문은 [이곳에서](https://discord.com/invite/RxRSgav) 할 수 있어!')
+  embed.setTitle('Help!')
+    .addField('kaori help', '명령어 목록 확인', true)
+    .addField('kaori ping', '네트워크 속도 확인', true)
+    .addField('kaori play <URL>', '유튜브 URL 재생', true)
+    .addField('kaori search <검색어>', '유튜브 콘텐츠 검색', true)
+    .addField('kaori skip', '재생중인 콘텐츠 넘기기', true)
+    .addField('kaori queue', '재생 대기열 확인', true)
+    .addField('kaori remove <숫자>', '대기열에서 삭제', true)
+    .addField('kaori volume <1~100>', '음량을 변경', true)
+    .addField('kaori leave', '음성채널에서 내보내기', true)
+    .addField('kaori prefix <접두사>', '접두사 변경', true)
   msg.channel.send(embed)
   msg.channel.send('https://discord.com/invite/RxRSgav')
 }
