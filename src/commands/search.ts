@@ -10,6 +10,12 @@ const search = (msg, Embed, data) => {
     return
   }
 
+  if (!msg.member.voice.channel) {
+    Embed.setDescription('음악을 재생하려면 음성 채널에 있어야 해!')
+    msg.channel.send(Embed)
+    return
+  }
+
   ytsr.getFilters(msg.content.replace(/kaori|search/gi, ''), (err, filters) => {
     if (err) throw err
     let filter = filters.get('Type').find(o => o.name === 'Video')
