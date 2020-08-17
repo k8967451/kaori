@@ -5,8 +5,9 @@ const queue = async (msg, embed, data) => {
     if (data[msg.guild.id].queue.length) {
       embed.setTitle('Queue')
       for (const key in data[msg.guild.id].queue) {
-        const info = await ytdl.getInfo(data[msg.guild.id].queue[key])
-        embed.addField(Number(key) + 1, info.videoDetails.title)
+        const e = data[msg.guild.id].queue[key]
+        const info = await ytdl.getInfo(e.id)
+        embed.addField(`${Number(key) + 1}. ${info.videoDetails.title}`, `<@${e.tag}>님이 추가함`)
       }
       msg.channel.send(embed)
     } else {
