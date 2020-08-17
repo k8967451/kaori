@@ -5,4 +5,5 @@
 [![chat](https://img.shields.io/discord/716501342436196384?style=flat-square)](https://discord.gg/RxRSgav)
 [![discord](https://img.shields.io/badge/bot-Discord-blue?style=flat-square)](https://discord.com/oauth2/authorize?client_id=728841953306738729&scope=bot&permissions=0)
 
-<img src="https://user-images.githubusercontent.com/59823089/87880965-f112bf00-ca30-11ea-91a8-ae0e553b2a4a.png" width="75%">
+<img width="50%" alt="kaori play" src="https://user-images.githubusercontent.com/59823089/90402538-907fac00-e0da-11ea-9bb0-1dd9e7d57f2a.png">
+<img width="50%" alt="kaori search" src="https://user-images.githubusercontent.com/59823089/90402569-9aa1aa80-e0da-11ea-801b-d86f9a34142c.png">

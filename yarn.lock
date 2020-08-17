@@ -12,7 +12,7 @@
     http-response-object "^3.0.1"
     parse-cache-control "^1.0.1"
 
-"@discordjs/collection@^0.1.5":
+"@discordjs/collection@^0.1.6":
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/@discordjs/collection/-/collection-0.1.6.tgz#9e9a7637f4e4e0688fd8b2b5c63133c91607682c"
   integrity sha512-utRNxnd9kSS2qhyivo9lMlt5qgAUasH2gb7BEOn6p0efFh24gjGomHzWKMAPn2hEReOPQZCJaRKoURwRotKucQ==
@@ -295,18 +295,18 @@ diff@^4.0.1:
   integrity sha512-58lmxKSA4BNyLz+HHMUzlOEpg09FV+ev6ZMe3vJihgdxzgcwZ8VoEEPmALCZG9LmqfVoNMMKpttIYTVG6uDY7A==
 
 discord.js@^12.2.0:
-  version "12.2.0"
-  resolved "https://registry.yarnpkg.com/discord.js/-/discord.js-12.2.0.tgz#31018732e42a495c92655055192221eab2ad11a9"
-  integrity sha512-Ueb/0SOsxXyqwvwFYFe0msMrGqH1OMqpp2Dpbplnlr4MzcRrFWwsBM9gKNZXPVBHWUKiQkwU8AihXBXIvTTSvg==
+  version "12.3.1"
+  resolved "https://registry.yarnpkg.com/discord.js/-/discord.js-12.3.1.tgz#8f58ac17d29b068dbfeb6c01fc7777bacd5324cf"
+  integrity sha512-mSFyV/mbvzH12UXdS4zadmeUf8IMQOo/YdunubG1wWt1xjWvtaJz/s9CGsFD2B5pTw1W/LXxxUbrQjIZ/xlUdw==
   dependencies:
-    "@discordjs/collection" "^0.1.5"
+    "@discordjs/collection" "^0.1.6"
     "@discordjs/form-data" "^3.0.1"
     abort-controller "^3.0.0"
     node-fetch "^2.6.0"
-    prism-media "^1.2.0"
+    prism-media "^1.2.2"
     setimmediate "^1.0.5"
     tweetnacl "^1.0.3"
-    ws "^7.2.1"
+    ws "^7.3.1"
 
 dotenv@^8.2.0:
   version "8.2.0"
@@ -338,9 +338,9 @@ event-target-shim@^5.0.0:
   integrity sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==
 
 ffmpeg-static@^4.2.6:
-  version "4.2.6"
-  resolved "https://registry.yarnpkg.com/ffmpeg-static/-/ffmpeg-static-4.2.6.tgz#3930b34b8c9012864d99cb027cf4e8f755832d91"
-  integrity sha512-86I0hm7BqfcNdlJqWw+BoKFyA39xzroa5JQq7GMEBNifzzSRXULVyI8AxoXyVoqDVnclptPhZ37UkmbqVQvO0w==
+  version "4.2.7"
+  resolved "https://registry.yarnpkg.com/ffmpeg-static/-/ffmpeg-static-4.2.7.tgz#92ae531ca87748357adf1f05a218a7fadc51fd44"
+  integrity sha512-SGnOr2d+k0/9toRIv9t5/hN/DMYbm5XMtG0wVwGM1tEyXJAD6dbcWOEvfHq4LOySm9uykKL6LMC4eVPeteUnbQ==
   dependencies:
     "@derhuerst/http-basic" "^8.2.0"
     env-paths "^2.2.0"
@@ -641,10 +641,10 @@ minipass@^3.0.0:
   dependencies:
     yallist "^4.0.0"
 
-minizlib@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/minizlib/-/minizlib-2.1.0.tgz#fd52c645301ef09a63a2c209697c294c6ce02cf3"
-  integrity sha512-EzTZN/fjSvifSX0SlqUERCN39o6T40AMarPbv0MrarSFtIITCBh7bi+dU8nxGFHuqs9jdIAeoYoKuQAAASsPPA==
+minizlib@^2.1.1:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/minizlib/-/minizlib-2.1.2.tgz#e90d3466ba209b932451508a11ce3d3632145931"
+  integrity sha512-bAxsR8BVfj60DWXHE3u30oHzfl4G7khkSuPW+qvpd7jFRHm7dLxOjUk1EHACJ/hxLY8phGJ0YhYHZo7jil7Qdg==
   dependencies:
     minipass "^3.0.0"
     yallist "^4.0.0"
@@ -834,7 +834,7 @@ pinkie@^2.0.0:
   resolved "https://registry.yarnpkg.com/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
   integrity sha1-clVrgM+g1IqXToDnckjoDtT3+HA=
 
-prism-media@^1.2.0:
+prism-media@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/prism-media/-/prism-media-1.2.2.tgz#4f1c841f248b67d325a24b4e6b1a491b8f50a24f"
   integrity sha512-I+nkWY212lJ500jLe4tN9tWO7nRiBAVdMv76P9kffZjYhw20raMlW1HSSvS+MLXC9MmbNZCazMrAr+5jEEgTuw==
@@ -1074,14 +1074,14 @@ strip-json-comments@^2.0.0, strip-json-comments@~2.0.1:
   integrity sha1-PFMZQukIwml8DsNEhYwobHygpgo=
 
 tar@^6.0.2:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/tar/-/tar-6.0.2.tgz#5df17813468a6264ff14f766886c622b84ae2f39"
-  integrity sha512-Glo3jkRtPcvpDlAs/0+hozav78yoXKFr+c4wgw62NNMO3oo4AaJdCo21Uu7lcwr55h39W2XD1LMERc64wtbItg==
+  version "6.0.5"
+  resolved "https://registry.yarnpkg.com/tar/-/tar-6.0.5.tgz#bde815086e10b39f1dcd298e89d596e1535e200f"
+  integrity sha512-0b4HOimQHj9nXNEAA7zWwMM91Zhhba3pspja6sQbgTpynOJf+bkjBnfybNYzbpLbnwXnbyB4LOREvlyXLkCHSg==
   dependencies:
     chownr "^2.0.0"
     fs-minipass "^2.0.0"
     minipass "^3.0.0"
-    minizlib "^2.1.0"
+    minizlib "^2.1.1"
     mkdirp "^1.0.3"
     yallist "^4.0.0"
 
@@ -1103,9 +1103,9 @@ trim-newlines@^1.0.0:
   integrity sha1-WIeWa7WCpFA6QetST301ARgVphM=
 
 ts-node-dev@^1.0.0-pre.56:
-  version "1.0.0-pre.56"
-  resolved "https://registry.yarnpkg.com/ts-node-dev/-/ts-node-dev-1.0.0-pre.56.tgz#b74c0d1db2d98f005ad73f9eaa0a3c0a231f14da"
-  integrity sha512-+2a3FAShOja+W5X6ZxKgf1PG3kOOkHCiYzSu6s3lwhLVxeMBusJudcv7W6cZKOTp7+L7hPkKW97t1CGw7bCDaA==
+  version "1.0.0-pre.57"
+  resolved "https://registry.yarnpkg.com/ts-node-dev/-/ts-node-dev-1.0.0-pre.57.tgz#7ed94caccbb9cf0bd9d10a782d8c8f90dcbefc36"
+  integrity sha512-xxk1d1jAK5hXumW7HtsbWZja1wBte3sy+avZY/mK2RAvD22ezlJI9H4EXicDxiW3rkBO/YqTfS0L+K3HwucA9A==
   dependencies:
     chokidar "^3.4.0"
     dateformat "~1.0.4-1.2.3"
@@ -1180,7 +1180,7 @@ wrappy@1:
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
   integrity sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
 
-ws@^7.2.1:
+ws@^7.3.1:
   version "7.3.1"
   resolved "https://registry.yarnpkg.com/ws/-/ws-7.3.1.tgz#d0547bf67f7ce4f12a72dfe31262c68d7dc551c8"
   integrity sha512-D3RuNkynyHmEJIpD2qrgVkc9DQ23OrN/moAwZX4L8DfvszsJxpjQuUq3LMx6HoYji9fbIOBY18XWBsAux1ZZUA==
@@ -1201,9 +1201,9 @@ yn@3.1.1:
   integrity sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==
 
 ytdl-core@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/ytdl-core/-/ytdl-core-3.2.0.tgz#933dfdc2e325ab6baedc05596ca2fa352a51d4e2"
-  integrity sha512-lzMT3Fp3GplNGVTD8c1eDmoSgqfG9icL+zw23hUdTpHbyOjHcaL5qa54qP7YqGj2NCOjJnoKqxr6Quh5dlEz6Q==
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/ytdl-core/-/ytdl-core-3.2.1.tgz#3c77af2456a1a78c545d453219068744bd8c21a2"
+  integrity sha512-e6vlLOc+yrdNGOqfbQvWuaI3XNx5Yp4sLGY2RPdP2gCiumhn1BDqrYjn1nUCze/LGZ8C3bFxEdUqKi2vS1aaXg==
   dependencies:
     html-entities "^1.3.1"
     m3u8stream "^0.7.1"
