@@ -16,16 +16,16 @@ const search = (msg, Embed, data) => {
     return
   }
 
-  ytsr.getFilters(msg.content.replace(/kaori|search/gi, ''), (err, filters) => {
-    if (err) throw err
-    let filter = filters.get('Type').find(o => o.name === 'Video')
-    ytsr(null, {
-      limit: 5,
-      nextpageRef: filter.ref,
-    }, (err, res) => {
-      if (err) throw err
+  ytsr.getFilters(msg.content.replace(/kaori|search/gi, ''))
+    .then(async filters => {
+      const res = await ytsr(null, {
+        limit: 5,
+        nextpageRef: filters.get('Type').find(o => o.name === 'Video').ref
+      })
+
       Embed.setTitle('Search!')
         .setDescription(res.query + '에 대한 검색 결과')
+
       for (const key in res.items) {
         const item: any = res.items[key]
         Embed.addField(`${Number(key) + 1}. ${item.title}`, item.live ? 'Live' : item.duration)
@@ -82,7 +82,6 @@ const search = (msg, Embed, data) => {
           })
       })
     })
-  })
 }
 
 export default search
