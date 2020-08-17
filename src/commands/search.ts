@@ -39,14 +39,14 @@ const search = (msg, Embed, data) => {
       }
 
       msg.channel.send(Embed).then(reply => {
-        iconList.forEach(element => {
-          reply.react(element)
-        })
+        for (const key in res.items) {
+          reply.react(iconList[key])
+        }
         reply.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
           .then(async collected => {
             const reaction = collected.first()
 
-            for (const key in iconList) {
+            for (const key in res.items) {
               const icon = iconList[key]
               if (reaction.emoji.name === icon) {
                 const initEmbed = embed(msg)
