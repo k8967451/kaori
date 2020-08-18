@@ -2,6 +2,12 @@ import ytdl from 'ytdl-core'
 import { embed } from '../utils'
 
 const player = async (msg, data) => {
+  if (!data[msg.guild.id].conn) {
+    await data[msg.guild.id].voiceChannel.join().then(conn => {
+      data[msg.guild.id].conn = conn
+    })
+  }
+
   const current = data[msg.guild.id].queue.shift()
   const initEmbed = embed(current.msg)
   const info = await ytdl.getInfo(current.id)
