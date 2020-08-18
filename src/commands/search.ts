@@ -16,6 +16,12 @@ const search = (msg, Embed, data) => {
     return
   }
 
+  if (data[msg.guild.id] && msg.member.voice.channel != data[msg.guild.id].voiceChannel) {
+    Embed.setDescription('음악을 추가하려면 동일한 음성 채널에 있어야 해!')
+    msg.channel.send(Embed)
+    return
+  }
+
   ytsr.getFilters(msg.content.replace(/kaori|search/gi, ''))
     .then(async filters => {
       const res = await ytsr(null, {
@@ -51,27 +57,28 @@ const search = (msg, Embed, data) => {
               if (reaction.emoji.name === icon) {
                 const initEmbed = embed(msg)
                 const selected = searchData[msg.channel.id][key]
+
                 if (!data[msg.guild.id]) {
-                  await msg.member.voice.channel.join().then(conn => {
-                    data[msg.guild.id] = {
-                      voiceChannel: msg.member.voice.channel,
-                      conn,
-                      queue: []
-                    }
-                  })
-                  const id = ytdl.getVideoID(selected.link)
-                  data[msg.guild.id].queue.push({ id: id, msg: msg })
-                  player(msg, data)
-                } else if (msg.member.voice.channel != data[msg.guild.id].voiceChannel) {
-                  initEmbed.setDescription('음악을 추가하려면 동일한 음성 채널에 있어야 해!')
-                  msg.channel.send(initEmbed)
-                } else {
-                  const id = ytdl.getVideoID(selected.link)
-                  data[msg.guild.id].queue.push({ id: id, msg: msg })
+                  data[msg.guild.id] = {
+                    voiceChannel: msg.member.voice.channel,
+                    conn: null,
+                    queue: []
+                  }
+                }
+
+                const id = ytdl.getVideoID(selected.link)
+                data[msg.guild.id].queue.push({ id: id, msg: msg })
+                if (!data[msg.guild.id].conn) player(msg, data)
+                else {
                   const info = await ytdl.getInfo(id)
-                  initEmbed.setTitle(info.videoDetails.title)
-                    .setURL(info.videoDetails.video_url)
-                    .setDescription('음악을 대기열에 추가했어!')
+                  const lengthSeconds = Number(info.videoDetails.lengthSeconds)
+                  const sec = lengthSeconds % 60
+                  const min = Math.floor(lengthSeconds / 60 % 60)
+                  const hour = Math.floor(lengthSeconds / 60 / 60)
+
+                  initEmbed.setTitle('Add')
+                    .setDescription('선택한 음악을 대기열에 추가했어!')
+                    .addField(info.videoDetails.title, `${hour ? hour + '시간' : ''} ${min ? min + '분' : ''} ${sec ? sec + '초' : ''}`)
                   msg.channel.send(initEmbed)
                 }
               }
