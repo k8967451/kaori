@@ -15,9 +15,9 @@ const play = async (msg, embed, data) => {
         })
         for (const key in url) {
           const id = ytdl.getVideoID(url[key])
-          data[msg.guild.id].queue.push({ id: id, tag: msg.author.id })
+          data[msg.guild.id].queue.push({ id: id, msg: msg })
           if (key === '0') {
-            player(msg, embed, data)
+            player(msg, data)
           } else {
             const info = await ytdl.getInfo(id)
             embed.setColor(process.env.color || '#f7cac9')
@@ -35,7 +35,7 @@ const play = async (msg, embed, data) => {
       } else {
         url.forEach(async e => {
           const id = ytdl.getVideoID(e)
-          data[msg.guild.id].queue.push({ id: id, tag: msg.author.id })
+          data[msg.guild.id].queue.push({ id: id, msg: msg })
           const info = await ytdl.getInfo(id)
           embed.setTitle(info.videoDetails.title)
             .setURL(info.videoDetails.video_url)

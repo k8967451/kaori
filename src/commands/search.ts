@@ -60,14 +60,14 @@ const search = (msg, Embed, data) => {
                     }
                   })
                   const id = ytdl.getVideoID(selected.link)
-                  data[msg.guild.id].queue.push({ id: id, tag: msg.author.id })
-                  player(msg, embed(msg), data)
+                  data[msg.guild.id].queue.push({ id: id, msg: msg })
+                  player(msg, data)
                 } else if (msg.member.voice.channel != data[msg.guild.id].voiceChannel) {
                   initEmbed.setDescription('음악을 추가하려면 동일한 음성 채널에 있어야 해!')
                   msg.channel.send(initEmbed)
                 } else {
                   const id = ytdl.getVideoID(selected.link)
-                  data[msg.guild.id].queue.push({ id: id, tag: msg.author.id })
+                  data[msg.guild.id].queue.push({ id: id, msg: msg })
                   const info = await ytdl.getInfo(id)
                   initEmbed.setTitle(info.videoDetails.title)
                     .setURL(info.videoDetails.video_url)
