@@ -1,7 +1,7 @@
 const leave = (msg, embed, data) => {
   if (data[msg.guild.id]) {
     data[msg.guild.id].voiceChannel.leave()
-    data[msg.guild.id] = null
+    delete data[msg.guild.id]
     embed.setTitle('Leave')
       .setDescription('음성 채널을 나왔어!')
     msg.channel.send(embed)

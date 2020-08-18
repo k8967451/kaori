@@ -1,7 +1,7 @@
 import { help, leave, ping, play, prefix, queue, remove, search, skip, volume } from './commands'
-import { embed, load, save } from './utils'
+import { embed } from './utils'
 
-const data = load('data/servers.json')
+const data = {}
 
 const commands = {
   'help': help,
@@ -20,7 +20,6 @@ const index = async (msg, client) => {
   for (const [regexp, command] of Object.entries(commands)) {
     if (msg.content.match(RegExp(regexp, 'i'))) {
       await command(msg, embed(msg), data, client)
-      save('data/servers.json', data)
     }
   }
 }
