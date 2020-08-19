@@ -30,6 +30,10 @@ const play = async (msg, embed, data) => {
     }
   }
 
+  const filter = (reaction, user) => {
+    return '✅'.includes(reaction.emoji.name) && user.id === msg.author.id
+  }
+
   let playlist = []
   for (const key in url) {
     const e = url[key]
@@ -47,6 +51,30 @@ const play = async (msg, embed, data) => {
         data[msg.guild.id].queue.push({ id: item.id, msg: msg })
       })
       if (key == '0' && !data[msg.guild.id].conn) player(msg, data)
+    }
+
+    if (validateVideo && validatePL) {
+      embed.setDescription('플레이리스트에 포함된 콘텐츠입니다! 나머지 콘텐츠도 추가를 원하나요?')
+      msg.channel.send(embed).then(reply => {
+        reply.react('✅')
+        reply.awaitReactions(filter, { max: 1, time: 60000, errors: ['time'] })
+          .then(async collected => {
+            const reaction = collected.first()
+            if (reaction.emoji.name === '✅') {
+              const pl = await ytpl(await ytpl.getPlaylistID(e))
+              delete pl.items[0]
+              pl.items.forEach(item => {
+                data[msg.guild.id].queue.push({ id: item.id, msg: msg })
+              })
+              embed.setTitle('Add')
+                .setDescription('플레이리스트의 나머지 콘텐츠는 대기열에 추가했어!')
+              reply.edit(embed)
+            }
+          })
+          .catch(() => {
+            reply.delete()
+          })
+      })
     }
   }
 
