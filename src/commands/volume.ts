@@ -5,6 +5,7 @@ const volume = (msg, embed, data) => {
       if (number) {
         if (100 >= number && number >= 0) {
           data[msg.guild.id].conn.dispatcher.setVolume(number / 100)
+          data[msg.guild.id].volume = number / 100
           embed.setTitle('Volume')
             .setDescription('음량을 ' + number + '으로 설정했어!')
           msg.channel.send(embed)

@@ -26,7 +26,7 @@ const player = async (msg, data) => {
       }
     })
     .on('error', err => console.error(err))
-  data[msg.guild.id].conn.dispatcher.setVolume(0.5)
+  data[msg.guild.id].conn.dispatcher.setVolume(data[msg.guild.id].volume || 0.5)
 }
 
 export default player
