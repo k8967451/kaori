@@ -20,8 +20,11 @@ const index = async (msg, client) => {
   for (const [regexp, command] of Object.entries(commands)) {
     if (msg.content.match(RegExp(regexp, 'i'))) {
       await command(msg, embed(msg), data, client)
+      return
     }
   }
+  if (msg.content.match(/(http(s)?:\/\/)?(www.)?youtu(be|.be)?(\.com)?\/.+/gi)) play(msg, embed(msg), data)
+  else search(msg, embed(msg), data)
 }
 
 export default index
