@@ -1,4 +1,5 @@
 import ytdl from 'ytdl-core'
+import ytpl from 'ytpl'
 import { player } from '../utils'
 
 const play = async (msg, embed, data) => {
@@ -32,10 +33,21 @@ const play = async (msg, embed, data) => {
   let playlist = []
   for (const key in url) {
     const e = url[key]
-    const id = ytdl.getVideoID(e)
-    data[msg.guild.id].queue.push({ id: id, msg: msg })
-    if (key == '0' && !data[msg.guild.id].conn) player(msg, data)
-    else playlist.push(await ytdl.getInfo(id))
+    const validateVideo = ytdl.validateURL(e)
+    const validatePL = ytpl.validateURL(e)
+
+    if (validateVideo) {
+      const videoID = ytdl.getVideoID(e)
+      data[msg.guild.id].queue.push({ id: videoID, msg: msg })
+      if (key == '0' && !data[msg.guild.id].conn) player(msg, data)
+      else playlist.push(await ytdl.getInfo(videoID))
+    } else if (validatePL) {
+      const pl = await ytpl(await ytpl.getPlaylistID(e))
+      pl.items.forEach(item => {
+        data[msg.guild.id].queue.push({ id: item.id, msg: msg })
+      })
+      if (key == '0' && !data[msg.guild.id].conn) player(msg, data)
+    }
   }
 
   if (playlist.length) {
