@@ -62,9 +62,8 @@ const play = async (msg, embed, data) => {
             const reaction = collected.first()
             if (reaction.emoji.name === '✅') {
               const pl = await ytpl(await ytpl.getPlaylistID(e))
-              delete pl.items[0]
               pl.items.forEach(item => {
-                data[msg.guild.id].queue.push({ id: item.id, msg: msg })
+                if (ytdl.getVideoID(e) != item.id) data[msg.guild.id].queue.push({ id: item.id, msg: msg })
               })
               embed.setTitle('Add')
                 .setDescription('플레이리스트의 나머지 콘텐츠는 대기열에 추가했어!')
