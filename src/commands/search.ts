@@ -66,11 +66,15 @@ const search = (msg, Embed, data) => {
                   }
                 }
 
-                const id = ytdl.getVideoID(selected.link)
-                data[msg.guild.id].queue.push({ id: id, msg: msg })
+                const info = await ytdl.getInfo(ytdl.getVideoID(selected.link))
+                data[msg.guild.id].queue.push({
+                  id: info.videoDetails.videoId,
+                  title: info.videoDetails.title,
+                  url: info.videoDetails.video_url,
+                  msg
+                })
                 if (!data[msg.guild.id].conn) player(msg, data)
                 else {
-                  const info = await ytdl.getInfo(id)
                   const lengthSeconds = Number(info.videoDetails.lengthSeconds)
                   const sec = lengthSeconds % 60
                   const min = Math.floor(lengthSeconds / 60 % 60)

@@ -10,10 +10,9 @@ const player = async (msg, data) => {
 
   const current = data[msg.guild.id].queue.shift()
   const initEmbed = embed(current.msg)
-  const info = await ytdl.getInfo(current.id)
-  initEmbed.setTitle(info.videoDetails.title)
-    .setURL(info.videoDetails.video_url)
-    .setImage(`https://img.youtube.com/vi/${info.videoDetails.videoId}/maxresdefault.jpg`)
+  initEmbed.setTitle(current.title)
+    .setURL(current.url)
+    .setImage(`https://img.youtube.com/vi/${current.id}/maxresdefault.jpg`)
   msg.channel.send(initEmbed)
   data[msg.guild.id].conn
     .play(ytdl(current.id), { bitrate: 'auto' })

@@ -41,10 +41,15 @@ const play = async (msg, embed, data) => {
     const validatePL = ytpl.validateURL(e)
 
     if (validateVideo) {
-      const videoID = ytdl.getVideoID(e)
-      data[msg.guild.id].queue.push({ id: videoID, msg: msg })
+      const info = await ytdl.getInfo(ytdl.getVideoID(e))
+      data[msg.guild.id].queue.push({
+        id: info.videoDetails.videoId,
+        title: info.videoDetails.title,
+        url: info.videoDetails.video_url,
+        msg
+      })
       if (key == '0' && !data[msg.guild.id].conn) player(msg, data)
-      else playlist.push(await ytdl.getInfo(videoID))
+      else playlist.push(info)
     } else if (validatePL) {
       const pl = await ytpl(await ytpl.getPlaylistID(e))
       pl.items.forEach(item => {
