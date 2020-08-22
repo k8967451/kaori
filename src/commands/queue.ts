@@ -6,8 +6,7 @@ const queue = async (msg, embed, data) => {
       embed.setTitle('Queue')
       for (const key in data[msg.guild.id].queue) {
         const e = data[msg.guild.id].queue[key]
-        const info = await ytdl.getInfo(e.id)
-        embed.addField(`${Number(key) + 1}. ${info.videoDetails.title}`, `<@${e.msg.author.id}>님이 추가함`)
+        embed.addField(`${Number(key) + 1}. ${e.title}`, `${e.duration} <@${e.msg.author.id}>님이 추가함`)
       }
       msg.channel.send(embed)
     } else {

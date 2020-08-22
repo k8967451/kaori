@@ -71,6 +71,7 @@ const search = (msg, Embed, data) => {
                   id: info.videoDetails.videoId,
                   title: info.videoDetails.title,
                   url: info.videoDetails.video_url,
+                  duration: info.videoDetails.lengthSeconds,
                   msg
                 })
                 if (!data[msg.guild.id].conn) player(msg, data)

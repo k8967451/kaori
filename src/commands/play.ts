@@ -42,10 +42,12 @@ const play = async (msg, embed, data) => {
 
     if (validateVideo) {
       const info = await ytdl.getInfo(ytdl.getVideoID(e))
+      console.log(info.videoDetails)
       data[msg.guild.id].queue.push({
         id: info.videoDetails.videoId,
         title: info.videoDetails.title,
         url: info.videoDetails.video_url,
+        duration: info.videoDetails.lengthSeconds,
         msg
       })
       if (key == '0' && !data[msg.guild.id].conn) player(msg, data)
@@ -53,7 +55,13 @@ const play = async (msg, embed, data) => {
     } else if (validatePL) {
       const pl = await ytpl(await ytpl.getPlaylistID(e))
       pl.items.forEach(item => {
-        data[msg.guild.id].queue.push({ id: item.id, msg: msg })
+        data[msg.guild.id].queue.push({
+          id: item.id,
+          title: item.title,
+          url: item.url,
+          duration: item.duration,
+          msg
+        })
       })
       if (key == '0' && !data[msg.guild.id].conn) player(msg, data)
     }
@@ -68,7 +76,13 @@ const play = async (msg, embed, data) => {
             if (reaction.emoji.name === '✅') {
               const pl = await ytpl(await ytpl.getPlaylistID(e))
               pl.items.forEach(item => {
-                if (ytdl.getVideoID(e) != item.id) data[msg.guild.id].queue.push({ id: item.id, msg: msg })
+                if (ytdl.getVideoID(e) != item.id) data[msg.guild.id].queue.push({
+                  id: item.id,
+                  title: item.title,
+                  url: item.url,
+                  duration: item.duration,
+                  msg
+                })
               })
               embed.setTitle('Add')
                 .setDescription('플레이리스트의 나머지 콘텐츠는 대기열에 추가했어!')
