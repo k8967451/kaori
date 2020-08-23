@@ -42,7 +42,6 @@ const play = async (msg, embed, data) => {
 
     if (validateVideo) {
       const info = await ytdl.getInfo(ytdl.getVideoID(e))
-      console.log(info.videoDetails)
       data[msg.guild.id].queue.push({
         id: info.videoDetails.videoId,
         title: info.videoDetails.title,
