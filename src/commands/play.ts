@@ -38,7 +38,7 @@ const play = async (msg, embed, data) => {
   for (const key in url) {
     const e = url[key]
     const videoID = ytdl.getVideoID(e)
-    const playlistID = await ytpl.getPlaylistID(e)
+    const playlistID = await ytpl.getPlaylistID(e).catch(() => { })
 
     if (videoID) {
       const info = await ytdl.getInfo(videoID)
