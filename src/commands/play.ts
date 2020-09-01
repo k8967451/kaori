@@ -37,11 +37,11 @@ const play = async (msg, embed, data) => {
   let playlist = []
   for (const key in url) {
     const e = url[key]
-    const validateVideo = ytdl.validateURL(e)
-    const validatePL = ytpl.validateURL(e)
+    const videoID = ytdl.getVideoID(e)
+    const playlistID = await ytpl.getPlaylistID(e)
 
-    if (validateVideo) {
-      const info = await ytdl.getInfo(ytdl.getVideoID(e))
+    if (videoID) {
+      const info = await ytdl.getInfo(videoID)
       data[msg.guild.id].queue.push({
         id: info.videoDetails.videoId,
         title: info.videoDetails.title,
@@ -51,8 +51,8 @@ const play = async (msg, embed, data) => {
       })
       if (key == '0' && !data[msg.guild.id].conn) player(msg, data)
       else playlist.push(info)
-    } else if (validatePL) {
-      const pl = await ytpl(await ytpl.getPlaylistID(e))
+    } else if (playlistID) {
+      const pl = await ytpl(playlistID)
       pl.items.forEach(item => {
         data[msg.guild.id].queue.push({
           id: item.id,
@@ -65,7 +65,7 @@ const play = async (msg, embed, data) => {
       if (key == '0' && !data[msg.guild.id].conn) player(msg, data)
     }
 
-    if (validateVideo && validatePL) {
+    if (videoID && playlistID) {
       embed.setDescription('플레이리스트에 포함된 콘텐츠입니다! 나머지 콘텐츠도 추가를 원하나요?')
       msg.channel.send(embed).then(reply => {
         reply.react('✅')
@@ -73,9 +73,9 @@ const play = async (msg, embed, data) => {
           .then(async collected => {
             const reaction = collected.first()
             if (reaction.emoji.name === '✅') {
-              const pl = await ytpl(await ytpl.getPlaylistID(e))
+              const pl = await ytpl(playlistID)
               pl.items.forEach(item => {
-                if (ytdl.getVideoID(e) != item.id) data[msg.guild.id].queue.push({
+                if (videoID != item.id) data[msg.guild.id].queue.push({
                   id: item.id,
                   title: item.title,
                   url: item.url,
