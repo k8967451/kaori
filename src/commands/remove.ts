@@ -12,7 +12,7 @@ const remove = (msg, embed, data) => {
   }
 
   const number = Number(msg.content.replace(/[^{0-9}]/gi, ''))
-  if (number) {
+  if (!number) {
     embed.setDescription('음악을 삭제하려면 대기열 번호를 알려줘!')
     msg.channel.send(embed)
     return
