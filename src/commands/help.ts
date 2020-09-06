@@ -1,5 +1,6 @@
 const help = (msg, embed) => {
   embed.setTitle('Help!')
+    .setDescription('Developer <@457459470424080384>')
     .addField('kaori <URL or 검색어>', '유튜브 URL 재생 또는 콘텐츠 검색', true)
     .addField('kaori play <URL>', '유튜브 URL 재생', true)
     .addField('kaori search <검색어>', '유튜브 콘텐츠 검색', true)
