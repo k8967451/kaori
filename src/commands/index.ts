@@ -7,6 +7,7 @@ import queue from './queue'
 import remove from './remove'
 import search from './search'
 import skip from './skip'
+import uptime from './uptime'
 import volume from './volume'
 
 export {
@@ -19,5 +20,6 @@ export {
   remove,
   search,
   skip,
+  uptime,
   volume
 }
