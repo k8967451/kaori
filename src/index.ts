@@ -12,6 +12,11 @@ client.on('message', async msg => {
   try {
     if (msg.author.bot) return
 
+    if (msg.system) {
+      msg.react('👋')
+      return
+    }
+
     const data = load('data/servers.json')[msg.channel.id]
     const prefix = data ? data.prefix ? data.prefix : null : null
     if (!msg.content.startsWith(prefix) && msg.content.search(RegExp(process.env.name, 'i')) == -1) return
