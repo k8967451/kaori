@@ -13,7 +13,8 @@ client.on('message', async msg => {
     if (msg.author.bot) return
 
     if (msg.system) {
-      msg.react('👋')
+      if (msg.type == 'GUILD_MEMBER_JOIN') msg.react('👋')
+      else if (msg.type == 'PINS_ADD') msg.react('📌')
       return
     }
 
