@@ -1,10 +1,11 @@
-import { help, leave, ping, play, prefix, queue, remove, search, skip, uptime, volume } from './commands'
+import { help, invite, leave, ping, play, prefix, queue, remove, search, skip, uptime, volume } from './commands'
 import { embed } from './utils'
 
 const data = {}
 
 const commands = {
   'help': help,
+  'invite': invite,
   'leave': leave,
   'ping': ping,
   'play': play,
