@@ -20,7 +20,7 @@ client.on('message', async msg => {
 
     const data = load('data/servers.json')[msg.channel.id]
     const prefix = data ? data.prefix ? data.prefix : null : null
-    if (!msg.content.startsWith(prefix) && msg.content.search(RegExp(process.env.name, 'i')) == -1) return
+    if (!msg.content.startsWith(prefix) && !(msg.content.includes(client.user.username)) != (msg.mentions.users.first() ? client.user.id == msg.mentions.users.first().id : false)) return
 
     music(msg, client)
   } catch (error) {
