@@ -22,6 +22,7 @@ client.on('message', async msg => {
     const prefix = data ? data.prefix ? data.prefix : null : null
     if (!msg.content.startsWith(prefix) && !(msg.content.includes(client.user.username)) != (msg.mentions.users.first() ? client.user.id == msg.mentions.users.first().id : false)) return
 
+    msg.content = msg.content.replace(/<@!?(\d+)>/g, '')
     music(msg, client)
   } catch (error) {
     console.warn(error)
