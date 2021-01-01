@@ -11,7 +11,7 @@ client.on('ready', () => {
 client.on('message', async msg => {
   try {
     if (msg.author.bot) return
-
+    
     if (msg.system) {
       if (msg.type == 'GUILD_MEMBER_JOIN') msg.react('👋')
       else if (msg.type == 'PINS_ADD') msg.react('📌')
@@ -20,7 +20,7 @@ client.on('message', async msg => {
 
     const data = load('data/servers.json')[msg.channel.id]
     const prefix = data ? data.prefix ? data.prefix : null : null
-    if (!msg.content.startsWith(prefix) && !(msg.content.includes(client.user.username)) != (msg.mentions.users.first() ? client.user.id == msg.mentions.users.first().id : false)) return
+    if (!msg.content.startsWith(prefix) && !(msg.content.toLowerCase().includes(client.user.username.toLowerCase())) != (msg.mentions.users.first() ? client.user.id == msg.mentions.users.first().id : false)) return
 
     msg.content = msg.content.replace(/<@!?(\d+)>/g, '')
     music(msg, client)
